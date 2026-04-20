@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Копилка дома | MEGAHOME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="piggy-page app-container">
+    <header class="piggy-header">
+      <a href="apartment.html" class="btn-back" aria-label="Назад к странице квартиры">← Назад</a>
+      <h1>Копилка дома</h1>
+    </header>
+    <nav class="app-breadcrumb" aria-label="Быстрые переходы">
+      <a href="index.html" class="link-subtle">Панель</a>
+      <span aria-hidden="true">•</span>
+      <a href="add-expense.html" class="link-subtle">Добавить расход</a>
+    </nav>
+
+    <main class="app-content">
+      <section class="piggy-balance-card surface-card">
+        <span class="card-label">Доступно в копилке</span>
+        <h2 class="balance-total">€ 450.00</h2>
+      </section>
+
+      <section class="piggy-transaction-section" aria-labelledby="piggy-expenses-title">
+        <h3 id="piggy-expenses-title" class="piggy-section-title">Расходы копилки</h3>
+        <div class="piggy-transaction-list">
+          <article class="piggy-transaction-item surface-card">
+            <div class="piggy-tx-info">
+              <span class="piggy-tx-date">15 Мар 2026</span>
+              <h4 class="piggy-tx-title">Замена лампочек (1 этаж)</h4>
+              <span class="piggy-tx-basis">Разовый расход • Оплачено управляющим</span>
+            </div>
+            <a href="charge-detail.html" class="piggy-tx-amount piggy-tx-amount--danger">- € 25.00</a>
+          </article>
+
+          <article class="piggy-transaction-item surface-card">
+            <div class="piggy-tx-info">
+              <span class="piggy-tx-date">02 Мар 2026</span>
+              <h4 class="piggy-tx-title">Ремонт входной двери</h4>
+              <span class="piggy-tx-basis">Счет #1024 • Оплачено управляющим</span>
+            </div>
+            <a href="charge-detail.html" class="piggy-tx-amount piggy-tx-amount--danger">- € 120.00</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="piggy-transaction-section" aria-labelledby="piggy-topup-title">
+        <h3 id="piggy-topup-title" class="piggy-section-title">Пополнения</h3>
+        <div class="piggy-transaction-list">
+          <article class="piggy-transaction-item piggy-transaction-item--aggregated surface-card">
+            <div class="piggy-tx-info">
+              <h4 class="piggy-tx-title">Март 2026</h4>
+              <span class="piggy-tx-basis">Агрегированные взносы жильцов</span>
+            </div>
+            <a href="apartment.html" class="piggy-tx-amount piggy-tx-amount--success">+ € 150.00</a>
+          </article>
+
+          <article class="piggy-transaction-item piggy-transaction-item--aggregated surface-card">
+            <div class="piggy-tx-info">
+              <h4 class="piggy-tx-title">Февраль 2026</h4>
+              <span class="piggy-tx-basis">Агрегированные взносы жильцов</span>
+            </div>
+            <a href="apartment.html" class="piggy-tx-amount piggy-tx-amount--success">+ € 320.00</a>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>

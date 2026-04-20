@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Добавить расход | MEGAHOME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-add-expense">
+
+  <div class="modal-overlay">
+    <div class="form-container surface-card">
+      <header class="form-header">
+        <h2 class="form-title">Новый счет на дом</h2>
+        <a href="index.html" class="btn-close" aria-label="Закрыть форму"><span aria-hidden="true">✕</span></a>
+      </header>
+      <nav class="app-breadcrumb" aria-label="Быстрые переходы">
+        <a href="home-settings.html" class="link-subtle">Настройки дома</a>
+        <span aria-hidden="true">•</span>
+        <a href="platform-admin.html" class="link-subtle">Админка</a>
+      </nav>
+
+      <form class="expense-form" action="#" method="post">
+        <div class="form-row">
+          <div class="input-group">
+            <label for="amount">Сумма (€)</label>
+            <input type="number" id="amount" name="amount" placeholder="0.00" step="0.01" min="0" inputmode="decimal" required>
+          </div>
+          <div class="input-group">
+            <label for="period">Период</label>
+            <div class="ds-field-wrap ds-field-wrap--month">
+              <input type="month" id="period" name="period" class="ds-field ds-field--month" required>
+              <span class="ds-field-icon" aria-hidden="true">📅</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="category">Категория (статья расхода)</label>
+          <div class="ds-select" id="categorySelect">
+            <input type="hidden" id="category" name="category" required>
+            <button type="button" class="ds-select-trigger" id="categoryTrigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="ds-select-value is-placeholder" id="categoryValue">Выберите категорию...</span>
+              <span class="ds-select-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="ds-select-menu" id="categoryMenu" role="listbox" aria-label="Категория расхода" hidden>
+              <button type="button" class="ds-select-option" data-value="electricity" role="option">
+                <span class="ds-select-option-title">Общее электричество</span>
+                <span class="ds-select-option-sub">По коэффициенту квартиры</span>
+              </button>
+              <button type="button" class="ds-select-option" data-value="elevator" role="option">
+                <span class="ds-select-option-title">Обслуживание лифта</span>
+                <span class="ds-select-option-sub">По коэффициенту квартиры</span>
+              </button>
+              <button type="button" class="ds-select-option" data-value="cleaning" role="option">
+                <span class="ds-select-option-title">Уборка</span>
+                <span class="ds-select-option-sub">По коэффициенту квартиры</span>
+              </button>
+              <button type="button" class="ds-select-option" data-value="one_time" role="option">
+                <span class="ds-select-option-title">Разовый ремонт</span>
+                <span class="ds-select-option-sub">Разовый расход без коэффициента</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="rf-code">RF код (опционально)</label>
+          <input type="text" id="rf-code" name="rf_code" placeholder="Например: RF123456789" autocomplete="off">
+        </div>
+
+        <div class="input-group">
+          <label for="description">Описание / Комментарий</label>
+          <textarea id="description" name="description" rows="3" placeholder="Кратко суть расхода..."></textarea>
+        </div>
+
+        <div class="input-group">
+          <span class="input-label-block" id="invoice-label">Оригинал счета (фото/скан/PDF)</span>
+          <div class="file-upload-zone" role="button" tabindex="0" aria-labelledby="invoice-label">
+            <div class="upload-icon" aria-hidden="true">📄</div>
+            <p>Перетащите файл сюда или <span class="file-upload-link">выберите на устройстве</span></p>
+            <input type="file" id="invoice-file" name="invoice" class="hidden-input" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" required aria-labelledby="invoice-label">
+          </div>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="piggy-bank" name="from_piggy">
+          <label for="piggy-bank">
+            Оплатить из Копилки дома
+            <span class="hint">Сумма спишется с баланса копилки, начисления жильцам не сформируются</span>
+          </label>
+        </div>
+
+        <footer class="form-actions">
+          <a href="index.html" class="btn-text--form">Отмена</a>
+          <button type="submit" class="btn-primary">Добавить счет</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var form = document.querySelector(".expense-form");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var fromPiggy = document.getElementById("piggy-bank");
+          if (fromPiggy && fromPiggy.checked) {
+            window.location.href = "piggy-bank.html";
+          } else {
+            window.location.href = "index.html";
+          }
+        });
+      }
+      var zone = document.querySelector(".file-upload-zone");
+      var fileInput = document.getElementById("invoice-file");
+      if (zone && fileInput) {
+        zone.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            fileInput.click();
+          }
+        });
+      }
+
+      var selectRoot = document.getElementById("categorySelect");
+      var selectTrigger = document.getElementById("categoryTrigger");
+      var selectMenu = document.getElementById("categoryMenu");
+      var selectValue = document.getElementById("categoryValue");
+      var selectInput = document.getElementById("category");
+
+      function openSelect() {
+        if (!selectMenu || !selectTrigger) return;
+        selectMenu.hidden = false;
+        selectTrigger.setAttribute("aria-expanded", "true");
+        selectRoot.classList.add("is-open");
+      }
+
+      function closeSelect() {
+        if (!selectMenu || !selectTrigger) return;
+        selectMenu.hidden = true;
+        selectTrigger.setAttribute("aria-expanded", "false");
+        selectRoot.classList.remove("is-open");
+      }
+
+      if (selectTrigger) {
+        selectTrigger.addEventListener("click", function () {
+          if (selectMenu.hidden) openSelect();
+          else closeSelect();
+        });
+      }
+
+      if (selectMenu) {
+        selectMenu.querySelectorAll(".ds-select-option").forEach(function (opt) {
+          opt.addEventListener("click", function () {
+            var title = opt.querySelector(".ds-select-option-title");
+            var value = opt.getAttribute("data-value");
+            if (selectValue && title) selectValue.textContent = title.textContent;
+            if (selectValue) selectValue.classList.remove("is-placeholder");
+            if (selectInput) selectInput.value = value || "";
+            closeSelect();
+          });
+        });
+      }
+
+      document.addEventListener("click", function (e) {
+        if (!selectRoot) return;
+        if (!selectRoot.contains(e.target)) closeSelect();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeSelect();
+      });
+    })();
+  </script>
+</body>
+</html>

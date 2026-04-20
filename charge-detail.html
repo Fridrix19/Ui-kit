@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Детализация начисления | MEGAHOME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-charge-drawer">
+
+  <div class="drawer-overlay">
+    <a href="apartment.html" class="drawer-dismiss" aria-label="Закрыть панель"></a>
+
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <header class="drawer-header">
+        <div class="header-titles">
+          <span class="subtitle drawer-period">Март 2026</span>
+          <h2 id="drawer-title" class="drawer-title">Общее электричество</h2>
+        </div>
+        <a href="apartment.html" class="btn-close" aria-label="Закрыть"><span aria-hidden="true">✕</span></a>
+      </header>
+
+      <div class="drawer-content">
+        <section class="calculation-block" aria-labelledby="calc-heading">
+          <h3 id="calc-heading" class="drawer-section-label">Расчет начисления</h3>
+
+          <div class="calc-row">
+            <span class="calc-label">Оригинальный счет на дом:</span>
+            <span class="calc-value">€ 100.00</span>
+          </div>
+
+          <div class="calc-row">
+            <span class="calc-label">Коэффициент квартиры (Кв. 12):</span>
+            <span class="calc-value">0.15</span>
+          </div>
+
+          <hr class="drawer-divider">
+
+          <div class="calc-row result-row">
+            <span class="calc-label">Итого к оплате:</span>
+            <span class="calc-value calc-value--total">€ 15.00</span>
+          </div>
+        </section>
+
+        <section class="document-block" aria-labelledby="doc-heading">
+          <h3 id="doc-heading" class="drawer-section-label">Основание (документ)</h3>
+
+          <div class="document-viewer">
+            <div class="pdf-placeholder">
+              <span class="pdf-icon" aria-hidden="true">📄</span>
+              <p class="pdf-name">Счет_Электричество_Март.pdf</p>
+              <button type="button" class="btn-outline" id="downloadPdfBtn">Скачать (1.2 MB)</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="drawer-footer">
+        <button type="button" class="btn-primary btn-block" id="payChargeBtn">Оплатить € 15.00</button>
+      </footer>
+    </aside>
+  </div>
+
+  <script>
+    (function () {
+      var downloadBtn = document.getElementById("downloadPdfBtn");
+      var payBtn = document.getElementById("payChargeBtn");
+
+      if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+          alert("Скачивание документа начато (демо).");
+        });
+      }
+
+      if (payBtn) {
+        payBtn.addEventListener("click", function () {
+          window.location.href = "auth.html";
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход | MEGAHOME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-auth">
+
+  <div class="auth-wrapper">
+    <div class="auth-card surface-card">
+      <nav class="auth-links text-center" aria-label="Быстрые переходы">
+        <a href="index.html" class="link-subtle">Панель</a>
+        <span aria-hidden="true">•</span>
+        <a href="apartment.html" class="link-subtle">Квартира</a>
+      </nav>
+      <div class="brand-header text-center">
+        <h1>MEGAHOME</h1>
+        <p class="subtitle">Добро пожаловать домой</p>
+      </div>
+
+      <form class="auth-step active" id="step-login" action="#" method="post">
+        <div class="input-group">
+          <label for="login-id">Системный ID (system_login_id)</label>
+          <input type="text" id="login-id" placeholder="Например: 8A7B6C5D" required>
+        </div>
+        <div class="input-group">
+          <label for="temp-password">Временный пароль</label>
+          <input type="password" id="temp-password" placeholder="••••••••" required>
+        </div>
+        <button type="button" class="btn-primary w-100 mt-4">Войти</button>
+      </form>
+
+      <form class="auth-step" id="step-register" style="display: none;" action="#" method="post">
+        <div class="alert-box">
+          Для безопасности задайте email и новый пароль. Вход по системному ID будет отключен.
+        </div>
+        <div class="input-group">
+          <label for="reg-email">Ваш Email</label>
+          <input type="email" id="reg-email" placeholder="mail@example.com" required>
+        </div>
+        <div class="input-group">
+          <label for="reg-password">Новый пароль</label>
+          <input type="password" id="reg-password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-primary w-100 mt-4">Завершить регистрацию</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var loginStep = document.getElementById("step-login");
+      var registerStep = document.getElementById("step-register");
+      var loginBtn = loginStep ? loginStep.querySelector(".btn-primary") : null;
+
+      function showRegisterStep() {
+        if (!loginStep || !registerStep) return;
+        loginStep.style.display = "none";
+        loginStep.classList.remove("active");
+        registerStep.style.display = "flex";
+        registerStep.classList.add("active");
+      }
+
+      if (loginBtn) {
+        loginBtn.addEventListener("click", showRegisterStep);
+      }
+
+      if (registerStep) {
+        registerStep.addEventListener("submit", function (e) {
+          e.preventDefault();
+          window.location.href = "index.html";
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

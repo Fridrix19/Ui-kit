@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админка платформы | MEGAHOME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <aside class="sidebar surface-card geometric-sidebar">
+      <div class="brand">MEGAHOME ADMIN</div>
+      <nav class="nav-menu">
+        <a href="platform-admin.html" class="nav-item active">Заявки на оплату</a>
+        <a href="home-settings.html" class="nav-item">Управление домами</a>
+        <a href="index.html" class="nav-item">Аудит системы</a>
+      </nav>
+    </aside>
+
+    <main class="admin-content">
+      <header class="admin-header">
+        <h2 class="text-s1">Обработка счетов платформы</h2>
+        <button type="button" class="btn-outline" id="generateHouseBtn">Сгенерировать новый дом (A-Z0-9)</button>
+      </header>
+
+      <div class="surface-card data-section geometric-grid">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID Счета</th>
+              <th>Дом (Код)</th>
+              <th>Категория</th>
+              <th>Сумма</th>
+              <th>Статус</th>
+              <th>Обработка</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono-text">#INV-8891</td>
+              <td class="mono-text">MEGAH0M3</td>
+              <td>Обслуживание лифта</td>
+              <td class="font-bold">€ 350.00</td>
+              <td><span class="badge badge-warning" id="invoiceStatus">SENT_TO_PLATFORM</span></td>
+              <td class="action-cell">
+                <button type="button" class="btn-success-solid" data-status="paid">PAID</button>
+                <button type="button" class="btn-danger-solid" data-status="unpaid">UNPAID</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var statusNode = document.getElementById("invoiceStatus");
+      var generateBtn = document.getElementById("generateHouseBtn");
+
+      if (generateBtn) {
+        generateBtn.addEventListener("click", function () {
+          window.location.href = "home-settings.html";
+        });
+      }
+
+      document.querySelectorAll("[data-status]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          if (!statusNode) return;
+          var type = btn.getAttribute("data-status");
+          if (type === "paid") {
+            statusNode.textContent = "PAID";
+            statusNode.className = "badge badge-success";
+          } else {
+            statusNode.textContent = "UNPAID";
+            statusNode.className = "badge badge-danger";
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

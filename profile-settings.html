@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Настройки профиля | MEGAHOME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container profile-settings-page">
+    <header class="app-header">
+      <a href="apartment.html" class="btn-back">← Назад</a>
+      <h1>Настройки профиля</h1>
+    </header>
+
+    <main class="app-content settings-layout">
+      <section class="settings-section surface-card">
+        <h3 class="settings-section-label">Контактные данные</h3>
+
+        <div class="input-group input-group--success">
+          <label for="email">Email (Используется для входа)</label>
+          <input type="email" id="email" value="ivanov.apt12@example.com">
+          <p class="input-helper helper-success">Email подтвержден</p>
+        </div>
+
+        <div class="input-group input-group--info">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" value="+30 69 1234 5678">
+          <p class="input-helper helper-info">Используется для уведомлений по платежам</p>
+        </div>
+
+        <button type="button" class="btn-primary mt-2" id="saveProfileBtn">Сохранить изменения</button>
+      </section>
+
+      <section class="settings-section surface-card">
+        <h3 class="settings-section-label">Безопасность</h3>
+
+        <div class="input-group input-group--warning">
+          <label for="current-password">Текущий пароль</label>
+          <input type="password" id="current-password" placeholder="••••••••">
+          <p class="input-helper helper-warning">Введите текущий пароль для подтверждения</p>
+        </div>
+
+        <div class="input-group input-group--error">
+          <label for="new-password">Новый пароль</label>
+          <input type="password" id="new-password" placeholder="Минимум 8 символов">
+          <p class="input-helper helper-error">Минимум 8 символов, 1 цифра и 1 спецсимвол</p>
+        </div>
+
+        <button type="button" class="btn-outline mt-2" id="updatePasswordBtn">Обновить пароль</button>
+      </section>
+
+      <section class="settings-section surface-card">
+        <h3 class="settings-section-label">Канал уведомлений</h3>
+        <div class="radio-group" role="radiogroup" aria-label="Канал уведомлений">
+          <label class="radio-option">
+            <input type="radio" name="notify-channel" value="email" checked>
+            <span class="radio-mark"></span>
+            <span>Email</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="notify-channel" value="sms">
+            <span class="radio-mark"></span>
+            <span>SMS</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="notify-channel" value="none">
+            <span class="radio-mark"></span>
+            <span>Не получать</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="settings-section surface-card opacity-muted">
+        <div class="section-header-row">
+          <div>
+            <h3 class="settings-section-label mb-0">Push-уведомления</h3>
+            <p class="hint">Функция появится в следующем обновлении</p>
+          </div>
+          <label class="toggle-switch disabled">
+            <input type="checkbox" disabled>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var saveBtn = document.getElementById("saveProfileBtn");
+      var updatePwdBtn = document.getElementById("updatePasswordBtn");
+
+      if (saveBtn) {
+        saveBtn.addEventListener("click", function () {
+          alert("Контактные данные сохранены.");
+        });
+      }
+
+      if (updatePwdBtn) {
+        updatePwdBtn.addEventListener("click", function () {
+          alert("Пароль обновлен.");
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

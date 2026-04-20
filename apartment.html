@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя квартира | MEGAHOME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <nav class="app-breadcrumb" aria-label="Навигация по сайту">
+      <a href="index.html" class="link-subtle">← Панель управляющего</a>
+    </nav>
+
+    <header class="app-header">
+      <div class="user-info">
+        <span class="subtitle">MEGAH0M3</span>
+        <h1>Квартира 12</h1>
+      </div>
+      <a href="profile-settings.html" class="profile-avatar" aria-label="Перейти в настройки профиля">А</a>
+    </header>
+
+    <main class="app-content">
+      <section class="balance-card surface-card">
+        <span class="card-label">К оплате</span>
+        <h2 class="balance-total danger">€ 125.50</h2>
+
+        <div class="action-buttons">
+          <button type="button" class="btn-primary btn-block">Оплатить онлайн</button>
+          <button type="button" class="btn-secondary btn-block">Через управляющего</button>
+        </div>
+      </section>
+
+      <nav class="section-tabs" role="tablist" aria-label="Разделы счетов">
+        <button type="button" class="tab active" role="tab" aria-selected="true" data-tab="current">Текущие счета</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="history">История</button>
+        <a href="piggy-bank.html" class="tab tab-link" role="tab" aria-selected="false">Копилка дома</a>
+      </nav>
+
+      <section class="charges-list" aria-label="Текущие начисления">
+        <article class="charge-item surface-card">
+          <div class="charge-header">
+            <div class="charge-title-group">
+              <div class="charge-icon" aria-hidden="true">⚡</div>
+              <div>
+                <h3 class="charge-title">Общее электричество</h3>
+                <span class="charge-period">Март 2026</span>
+              </div>
+            </div>
+            <span class="badge badge-warning">ОСТАТОК</span>
+          </div>
+
+          <div class="charge-details">
+            <div class="amount-group">
+              <span class="charge-amount">€ 45.50</span>
+              <span class="charge-original">из € 100.00</span>
+            </div>
+            <div class="charge-actions-col">
+              <a href="charge-detail.html" class="btn-text">Детализация</a>
+              <button type="button" class="btn-text" data-open="pdf">Счет на дом PDF ➔</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="charge-item surface-card">
+          <div class="charge-header">
+            <div class="charge-title-group">
+              <div class="charge-icon" aria-hidden="true">🛗</div>
+              <div>
+                <h3 class="charge-title">Обслуживание лифта</h3>
+                <span class="charge-period">Март 2026</span>
+              </div>
+            </div>
+            <span class="badge badge-danger">НЕ ОПЛАЧЕНО</span>
+          </div>
+
+          <div class="charge-details">
+            <div class="amount-group">
+              <span class="charge-amount">€ 80.00</span>
+            </div>
+            <button type="button" class="btn-text" data-open="pdf">Счет на дом PDF ➔</button>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var historyTab = document.querySelector('[data-tab="history"]');
+      if (historyTab) {
+        historyTab.addEventListener("click", function () {
+          window.location.href = "piggy-bank.html";
+        });
+      }
+
+      var payOnlineBtn = document.querySelector(".action-buttons .btn-primary");
+      if (payOnlineBtn) {
+        payOnlineBtn.addEventListener("click", function () {
+          window.location.href = "charge-detail.html";
+        });
+      }
+
+      var managerPayBtn = document.querySelector(".action-buttons .btn-secondary");
+      if (managerPayBtn) {
+        managerPayBtn.addEventListener("click", function () {
+          window.location.href = "add-expense.html";
+        });
+      }
+
+      document.querySelectorAll('[data-open="pdf"]').forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          alert("Открываем PDF счета (демо).");
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

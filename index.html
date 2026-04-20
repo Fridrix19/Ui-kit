@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Управляющий | MEGAHOME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <header class="top-bar">
+      <div class="brand brand-meta">
+        <h1>MEGAHOME</h1>
+        <span class="house-code">MEGAH0M3</span>
+        <a href="apartment.html" class="link-subtle brand-page-link">Моя квартира</a>
+      </div>
+      <div class="actions">
+        <a href="auth.html" class="link-subtle actions-form-link">Вход</a>
+        <a href="home-settings.html" class="link-subtle actions-form-link">Настройки дома</a>
+        <a href="platform-admin.html" class="link-subtle actions-form-link">Админка</a>
+        <a href="add-expense.html" class="link-subtle actions-form-link">Счёт на дом</a>
+        <button type="button" class="btn-primary" id="openAddAccountModal" aria-haspopup="dialog">
+          + Добавить счёт
+        </button>
+        <button type="button" class="profile-avatar" id="openProfileSheet" aria-haspopup="dialog" aria-label="Меню профиля">
+          У
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="toggle-row toggle-row--wide">
+        <span class="toggle-label" id="label-email-notify">Уведомления по email</span>
+        <label class="toggle">
+          <input type="checkbox" class="toggle-input" id="toggle-email" aria-labelledby="label-email-notify" checked>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+
+      <section class="metrics-grid">
+        <div class="metric-card surface-card">
+          <span class="metric-label">Общая задолженность</span>
+          <h2 class="metric-value danger">€ 1,250.00</h2>
+        </div>
+        <div class="metric-card surface-card">
+          <span class="metric-label">Копилка дома</span>
+          <h2 class="metric-value">€ 450.00</h2>
+        </div>
+        <div class="metric-card surface-card">
+          <span class="metric-label">Баланс дома</span>
+          <h2 class="metric-value">€ 820.00</h2>
+        </div>
+        <div class="metric-card surface-card">
+          <span class="metric-label">Ожидают подтверждения</span>
+          <h2 class="metric-value warning">2 платежа</h2>
+        </div>
+      </section>
+
+      <section class="data-section surface-card">
+        <h3 class="section-title">Состояние по квартирам</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Кв.</th>
+              <th>Начислено</th>
+              <th>Оплачено</th>
+              <th>Задолженность</th>
+              <th>Статус</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12</td>
+              <td>€ 150.00</td>
+              <td>€ 150.00</td>
+              <td>€ 0.00</td>
+              <td><span class="badge status-tooltip status-tooltip--success">ОПЛАЧЕНО</span></td>
+              <td><a href="apartment.html" class="btn-icon" aria-label="Подробнее о квартире 12">➔</a></td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>€ 200.00</td>
+              <td>€ 50.00</td>
+              <td>€ 150.00</td>
+              <td><span class="badge status-tooltip status-tooltip--warning">ЧАСТИЧНО</span></td>
+              <td><a href="home-settings.html" class="btn-icon" aria-label="Подробнее о квартире 14">➔</a></td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>€ 90.00</td>
+              <td>€ 0.00</td>
+              <td>€ 90.00</td>
+              <td><span class="badge status-tooltip status-tooltip--danger">ПРОСРОЧЕНО</span></td>
+              <td><a href="add-expense.html" class="btn-icon" aria-label="Создать счет для квартиры 15">➔</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- Pop-up: ввод + две кнопки -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal">
+      <h2 id="modalTitle" class="modal-title">Новый счёт</h2>
+      <p class="modal-body">Укажите название счёта — его увидят жильцы в общем списке.</p>
+      <label class="sr-only" for="modalInput">Название счёта</label>
+      <input class="modal-field" id="modalInput" type="text" placeholder="Placeholder" autocomplete="off">
+      <div class="modal-actions modal-actions--row">
+        <button type="button" class="btn-ghost" id="modalCancel">Отмена</button>
+        <button type="button" class="btn-primary" id="modalConfirm">Добавить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Sheet -->
+  <div class="action-sheet" id="actionSheet" aria-hidden="true">
+    <button type="button" class="action-sheet-backdrop" id="actionSheetBackdrop" aria-label="Закрыть меню"></button>
+    <div class="action-sheet-panel">
+      <div class="action-sheet-card">
+        <div class="action-sheet-header">
+          <div class="action-sheet-title">Профиль</div>
+          <p class="action-sheet-message">Выберите действие для этой учётной записи.</p>
+        </div>
+        <ul class="action-sheet-list">
+          <li><button type="button" class="action-sheet-item" data-go="home-settings.html">Настройки дома</button></li>
+          <li><button type="button" class="action-sheet-item" data-go="add-expense.html">Пригласить жильца</button></li>
+          <li><button type="button" class="action-sheet-item action-sheet-item--destructive" data-go="auth.html">Выйти из дома</button></li>
+        </ul>
+      </div>
+      <button type="button" class="action-sheet-cancel" id="actionSheetCancel">Отмена</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var modalBackdrop = document.getElementById("modalBackdrop");
+      var openModalBtn = document.getElementById("openAddAccountModal");
+      var modalCancel = document.getElementById("modalCancel");
+      var modalConfirm = document.getElementById("modalConfirm");
+      var modalInput = document.getElementById("modalInput");
+
+      function openModal() {
+        modalBackdrop.hidden = false;
+        requestAnimationFrame(function () {
+          modalBackdrop.classList.add("is-open");
+        });
+        modalInput.focus();
+      }
+
+      function closeModal() {
+        modalBackdrop.classList.remove("is-open");
+        setTimeout(function () {
+          modalBackdrop.hidden = true;
+        }, 200);
+      }
+
+      openModalBtn.addEventListener("click", openModal);
+      modalCancel.addEventListener("click", closeModal);
+      modalConfirm.addEventListener("click", function () {
+        closeModal();
+        window.location.href = "add-expense.html";
+      });
+      modalBackdrop.addEventListener("click", function (e) {
+        if (e.target === modalBackdrop) closeModal();
+      });
+
+      var sheet = document.getElementById("actionSheet");
+      var sheetBackdrop = document.getElementById("actionSheetBackdrop");
+      var sheetCancel = document.getElementById("actionSheetCancel");
+      var openSheetBtn = document.getElementById("openProfileSheet");
+
+      function openSheet() {
+        sheet.classList.add("is-open");
+        sheet.setAttribute("aria-hidden", "false");
+      }
+
+      function closeSheet() {
+        sheet.classList.remove("is-open");
+        sheet.setAttribute("aria-hidden", "true");
+      }
+
+      openSheetBtn.addEventListener("click", openSheet);
+      sheetBackdrop.addEventListener("click", closeSheet);
+      sheetCancel.addEventListener("click", closeSheet);
+      sheet.querySelectorAll("[data-go]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var target = btn.getAttribute("data-go");
+          closeSheet();
+          if (target) window.location.href = target;
+        });
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          if (modalBackdrop.classList.contains("is-open")) closeModal();
+          if (sheet.classList.contains("is-open")) closeSheet();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
