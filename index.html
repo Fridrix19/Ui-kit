@@ -9,30 +9,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="has-global-nav">
 
-  <div class="dashboard-wrapper">
-    <header class="top-bar">
-      <div class="brand brand-meta">
-        <h1>MEGAHOME</h1>
-        <span class="house-code">MEGAH0M3</span>
-        <a href="apartment.html" class="link-subtle brand-page-link">Моя квартира</a>
-      </div>
-      <div class="actions">
-        <a href="auth.html" class="link-subtle actions-form-link">Вход</a>
-        <a href="home-settings.html" class="link-subtle actions-form-link">Настройки дома</a>
-        <a href="platform-admin.html" class="link-subtle actions-form-link">Админка</a>
-        <a href="add-expense.html" class="link-subtle actions-form-link">Счёт на дом</a>
-        <button type="button" class="btn-primary" id="openAddAccountModal" aria-haspopup="dialog">
+  <header class="global-nav" aria-label="Глобальная навигация">
+    <div class="global-nav-inner">
+      <a href="index.html" class="global-brand">MEGAHOME</a>
+      <nav class="global-links">
+        <a href="index.html" class="global-link is-active">Главная</a>
+        <a href="apartment.html" class="global-link">Квартира</a>
+        <a href="add-expense.html" class="global-link">Счет</a>
+        <a href="piggy-bank.html" class="global-link">Копилка</a>
+        <a href="home-settings.html" class="global-link">Дом</a>
+        <a href="platform-admin.html" class="global-link">Админка</a>
+        <a href="profile-settings.html" class="global-link">Профиль</a>
+      </nav>
+      <div class="global-nav-actions">
+        <button type="button" class="btn-primary btn-nav-compact" id="openAddAccountModal" aria-haspopup="dialog">
           + Добавить счёт
         </button>
-        <button type="button" class="profile-avatar" id="openProfileSheet" aria-haspopup="dialog" aria-label="Меню профиля">
+        <button type="button" class="profile-avatar profile-avatar--nav" id="openProfileSheet" aria-haspopup="dialog" aria-label="Меню профиля">
           У
         </button>
       </div>
-    </header>
+    </div>
+  </header>
 
+  <div class="dashboard-wrapper">
     <main class="content">
+      <section class="quick-actions">
+        <a href="add-expense.html" class="quick-action surface-card">
+          <span class="quick-action-title">Новый счёт</span>
+          <span class="quick-action-text">Создать начисление по дому</span>
+        </a>
+        <a href="home-settings.html" class="quick-action surface-card">
+          <span class="quick-action-title">Квартиры</span>
+          <span class="quick-action-text">Изменить жильцов и коэффициенты</span>
+        </a>
+        <a href="piggy-bank.html" class="quick-action surface-card">
+          <span class="quick-action-title">Копилка</span>
+          <span class="quick-action-text">Посмотреть расходы и пополнения</span>
+        </a>
+        <a href="platform-admin.html" class="quick-action surface-card">
+          <span class="quick-action-title">Платформа</span>
+          <span class="quick-action-text">Проверить внешние статусы</span>
+        </a>
+      </section>
+
       <div class="toggle-row toggle-row--wide">
         <span class="toggle-label" id="label-email-notify">Уведомления по email</span>
         <label class="toggle">
@@ -100,6 +122,53 @@
             </tr>
           </tbody>
         </table>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="data-section surface-card">
+          <h3 class="section-title">Требуют внимания</h3>
+          <ul class="attention-list">
+            <li class="attention-item">
+              <span class="attention-text">Квартира 15: просрочка 90€ (8 дней)</span>
+              <a href="apartment.html" class="hs-btn-text">Открыть</a>
+            </li>
+            <li class="attention-item">
+              <span class="attention-text">2 платежа ожидают подтверждения</span>
+              <a href="platform-admin.html" class="hs-btn-text">Проверить</a>
+            </li>
+            <li class="attention-item">
+              <span class="attention-text">Копилка ниже порога (450€)</span>
+              <a href="piggy-bank.html" class="hs-btn-text">Перейти</a>
+            </li>
+          </ul>
+        </article>
+
+        <article class="data-section surface-card">
+          <h3 class="section-title">Последняя активность</h3>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <span class="activity-dot"></span>
+              <div>
+                <p class="activity-title">Создан счёт «Обслуживание лифта»</p>
+                <p class="activity-meta">Сегодня, 09:42 • Управляющий</p>
+              </div>
+            </li>
+            <li class="activity-item">
+              <span class="activity-dot"></span>
+              <div>
+                <p class="activity-title">Кв. 12 оплатила счёт за март</p>
+                <p class="activity-meta">Вчера, 21:10 • Онлайн оплата</p>
+              </div>
+            </li>
+            <li class="activity-item">
+              <span class="activity-dot"></span>
+              <div>
+                <p class="activity-title">Обновлены коэффициенты квартиры 14</p>
+                <p class="activity-meta">Вчера, 16:03 • Настройки дома</p>
+              </div>
+            </li>
+          </ul>
+        </article>
       </section>
     </main>
   </div>
